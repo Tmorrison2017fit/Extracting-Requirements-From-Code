@@ -1,4 +1,4 @@
-# Project:  
+# Project:
 **Extracting Requirements From Code**
 
 ### Team:
