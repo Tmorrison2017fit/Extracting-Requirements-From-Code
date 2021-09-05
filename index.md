@@ -23,3 +23,4 @@ Plan (Jan ?) | Plan, Presentation
 Milestone 4 (Feb ?) |	Presentation, Progress Evaluation  
 Milestone 5 (Mar ?) |	Poster, e-book page, Presentation, Progress Evaluation  
 Milestone 6 (Apr ?) |	User and/or Developer Manual, Demo Video, Presentation, Progress Evaluation  
+
