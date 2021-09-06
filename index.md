@@ -14,7 +14,7 @@
 ## First Semester  
 
 | Task                 	| Resources                                                    	|
-|----------------------	|--------------------------------------------------------------	|
+|----------------------	|:------------------------------------------------------------:	|
 | Plan (Sep 8)         	| Plan, Presentation                                           	|
 | Milestone 1 (Oct 4)  	| Presentation, Progress Evaluation                            	|
 | Milestone 2 (Nov 1)  	| Requirement, Design, Test, Presentation, Progress Evaluation 	|
@@ -24,7 +24,7 @@
 ## Second Semester  
 
 | Task                	| Resources                                                                   	|
-|---------------------	|-----------------------------------------------------------------------------	|
+|---------------------	|:---------------------------------------------------------------------------:	|
 | Plan (Jan ?)        	| Plan, Presentation                                                          	|
 | Milestone 4 (Feb ?) 	| Presentation, Progress Evaluation                                           	|
 | Milestone 5 (Mar ?) 	| Poster, e-book page, Presentation, Progress Evaluation                      	|
