@@ -15,7 +15,7 @@
 
 | Task                 	| Resources                                                    	|
 |----------------------	|:------------------------------------------------------------:	|
-| Plan (Sep 8)         	| Plan, Presentation                                           	|
+| Plan (Sep 8)         	| [Plan](https://docs.google.com/document/d/1O08zEQ2tUOcjYuoNngahQEHLt-pfptqeQiG73znC2eg/edit?usp=sharing), [Presentation](https://docs.google.com/presentation/d/1SdWi7Sn9gkN1yUn7ZBfygoKM0_mOxNvadUVt0BU36rQ/edit?usp=sharing)                                           	|
 | Milestone 1 (Oct 4)  	| Presentation, Progress Evaluation                            	|
 | Milestone 2 (Nov 1)  	| Requirement, Design, Test, Presentation, Progress Evaluation 	|
 | Milestone 3 (Nov 29) 	| Presentation, Progress Evaluation                            	|
