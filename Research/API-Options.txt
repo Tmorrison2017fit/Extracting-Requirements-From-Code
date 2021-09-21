@@ -1,0 +1,43 @@
+Options
+RapidAPI:
+https://rapidapi.com/products/hub/
+Pros:
+Will search and find the best API for our needs
+
+Postman:
+https://www.postman.com/postman
+
+Pros:
+It’s free, also open-source
+Can help build and test the API
+Support from third party sources to learn how to use the tool efficiently
+Cons:
+Javascript
+
+SoapUI:
+https://www.soapui.org/
+
+Pros:
+Most prominent Web API service when it comes to:
+Functional
+Data-driven
+Mocking
+Security
+Performance
+Cons:
+It’s just for testing purposes
+Java
+Just for Web APIs
+
+Swagger:
+https://swagger.io/
+
+Pros:
+Helps with Design, Building, and Testing
+Open Source
+Includes
+Swagger Editor – browser-based editor where you can write OpenAPI specs.
+Swagger UI – renders OpenAPI specs as interactive API documentation.
+Swagger Codegen – generates server stubs and client libraries from an OpenAPI spec.
+Cons:
+Free version does not include all of the perks, like some of the team collaboration tools.
