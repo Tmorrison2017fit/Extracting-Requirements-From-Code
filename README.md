@@ -1,4 +1,4 @@
-# Extracting-Requirements-From-Code
+# ReqEx (Extracting-Requirements-From-Code)
 
 
 ### This is where we will have the main features of the actual program, and input/output specifications.
