@@ -1,5 +1,4 @@
-# Project:
-**ReqEx:**
+# ReqEx:
 **Extracting Requirements From Code**
 
 ### Team:
