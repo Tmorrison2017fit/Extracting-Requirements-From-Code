@@ -1,21 +1,20 @@
 #include <iostream>
-#include "REObject.cpp"
-#include "REObject.h"
+#include <string>
+#include "Storage.cpp"
+#include "Parse.cpp"
+#include "Storage.h"
+#include "Parse.h"
+
 using namespace std;
-int main(void){
 
-  File FileObj;
-  Method One;
-  Method Two;
-  Method Three;
-  One.SetNum(5);
-  Two.SetNum(556);
-  Three.SetNum(4565);
+int main(int argc,char* argv[]){
 
-  FileObj.AddMethod(One);
-  FileObj.AddMethod(Two);
-  FileObj.AddMethod(Three);
-  cout << FileObj.GetNum(2);
+  // Creates one file, will be changed later for multiple files
+  File *TestFile = New_File("Temp File");
+
+  Parse_File(argv[1], TestFile);
+
+
 
   return 0;
 }
