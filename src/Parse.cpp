@@ -4,16 +4,15 @@
 #include "Parse.h"
 
 void Parse_File(string file, File *Cur_File){
+  cout << Cur_File->List[0].GetName() << endl;
 
   fstream FileObj;
-  // Working on storing method in the file object
-  // Method *NewMethod = New_Method("TempName");
-  // Cur_File->AddMethod(*NewMethod);
+
   FileObj.open(file,ios::in);
   if (FileObj.is_open()){
       string temp;
       while(getline(FileObj, temp)){
-         cout << temp << endl;
+         Cur_File->List[0].AddLine(temp);
       }
     }
       FileObj.close();

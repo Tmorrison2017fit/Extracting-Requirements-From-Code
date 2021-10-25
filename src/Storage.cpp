@@ -5,20 +5,27 @@
 
 using namespace std;
 
-Method::Method(string MName){
-  MethodName = MName;
+File::Method::Method(){
 };
 
 
-string Method::GetName(){
+void File::Method::PutName(string MName){
+   MethodName = MName;
+};
+
+int File::Method::GetLength(){
+  return Lines.size();
+};
+
+string File::Method::GetName(){
   return MethodName;
 };
 
-string Method::GetLine(int index){
+string File::Method::GetLine(int index){
   return Lines[index];
 };
 
-void Method::AddLine(string Line){
+void File::Method::AddLine(string Line){
     Lines.push_back(Line);
 };
 
@@ -31,15 +38,6 @@ void File::AddMethod(Method NewEntry){
   List.push_back(NewEntry);
 };
 
-string File::GetLFMethod(int Method_Index, int Line_Index){
-  return List[Method_Index].GetLine(Line_Index);
-};
-
-
-Method* New_Method(string Method_Name){
-  Method *NMethod = new Method(Method_Name);
-  return NMethod;
-};
 
 File* New_File(string File_Name){
   File *NFile = new File(File_Name);
