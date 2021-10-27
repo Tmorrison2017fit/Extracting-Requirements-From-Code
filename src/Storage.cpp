@@ -32,7 +32,7 @@ void File::Method::AddLine(string Line){
 void File::Method::AddLoopRange(int begin, int finish){
   vector<int> newRange(2);
   newRange[0] = begin - 1; // -1 to make up for indexes starting at 0
-  newRange[1] = finish - 1;
+  newRange[1] = finish;
   Loops.push_back(newRange);
 };
 

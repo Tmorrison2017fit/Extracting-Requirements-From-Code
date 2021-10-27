@@ -20,7 +20,7 @@ int main(int argc,char* argv[]){
   // Example on how to access the method within the File Class.
   cout << TestFile->MethodsInFile[0].GetName() << endl;
   // Not final, just used to test data storage
-  Parse_File(argv[1], TestFile);
+  Read_File(argv[1], TestFile);
 
   // Prints the stored data.
   TestFile->MethodsInFile[0].AddLoopRange(15,20);
@@ -29,6 +29,7 @@ int main(int argc,char* argv[]){
   for( int i = Len[0]; i <= Len[1]; i++){
     cout << TestFile->MethodsInFile[0].GetLine(i) << endl;
   }
+
 
 
 
