@@ -23,15 +23,21 @@ class File{
         string MethodName;
         //Temporary: just to test storing values until Identify is ready
         vector<string> Lines;
+
     };
     //-------------------------------------------
-    vector<Method> List;
+
     void AddMethod(Method NewEntry);
-    //void PrintVector();
+    void AddFunctionDef(string NewDef);
+    void AddLibrary(string NewLib);
+    string GetFunctionDef(int index);
+    string GetLibrary(int index);
+    vector<Method> List;
+
   private:
     string FileName;
     vector<string> Libraries;
-
+    vector<string> FunctionDefs;
 };
 
 File* New_File(string File_Name);
