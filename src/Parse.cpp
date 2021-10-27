@@ -12,7 +12,9 @@ void Parse_File(string file, File *Cur_File){
   if (FileObj.is_open()){
       string temp;
       while(getline(FileObj, temp)){
-         Cur_File->List[0].AddLine(temp);
+          if(temp.length() != 1){
+            Cur_File->List[0].AddLine(temp);
+          }
       }
     }
       FileObj.close();
