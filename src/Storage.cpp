@@ -29,26 +29,39 @@ void File::Method::AddLine(string Line){
     Lines.push_back(Line);
 };
 
+void File::Method::AddLoopRange(int begin, int finish){
+  vector<int> newRange(2);
+  newRange[0] = begin - 1; // -1 to make up for indexes starting at 0
+  newRange[1] = finish - 1;
+  Loops.push_back(newRange);
+};
+
+vector<int> File::Method::GetLoopRange(int index){
+  vector<int> Range(2);
+  Range[0] = Loops[index][0];
+  Range[1] = Loops[index][1];
+  return Range;
+};
 //------------------------------------------------------------------
 File::File(string Name_of_File){
   FileName = Name_of_File;
 };
 
 void File::AddMethod(Method NewEntry){
-  List.push_back(NewEntry);
+  MethodsInFile.push_back(NewEntry);
 };
 
-void File::AddFunctionDef(string NewDef){
-  FunctionDefs.push_back(NewDef);
+void File::AddMethodDef(string NewDef){
+  MethodDefs.push_back(NewDef);
 };
 
 void File::AddLibrary(string NewLib){
   Libraries.push_back(NewLib);
 };
 
-string File::GetFunctionDef(int index){
-  if(index < FunctionDefs.size() && index >= 0){
-    return FunctionDefs[index];
+string File::GetMethodDef(int index){
+  if(index < MethodDefs.size() && index >= 0){
+    return MethodDefs[index];
   }
   else{
     return "Error: Index out of bounds";

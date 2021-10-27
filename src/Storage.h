@@ -6,7 +6,6 @@
 using namespace std;
 
 
-
 class File{
   public:
       File(string Name_of_File);
@@ -19,25 +18,28 @@ class File{
         int GetLength();
         string GetLine(int index);
         void AddLine(string Line);
+        void AddLoopRange(int begin, int finish);
+        vector<int> GetLoopRange(int index);
       private:
         string MethodName;
-        //Temporary: just to test storing values until Identify is ready
-        vector<string> Lines;
+        vector<string> Lines; // Stores file line by line
+        vector<int> Variables; // Stores line number of where the variable are at
+        vector<vector<int>> Loops;
 
     };
     //-------------------------------------------
 
-    void AddMethod(Method NewEntry);
-    void AddFunctionDef(string NewDef);
-    void AddLibrary(string NewLib);
-    string GetFunctionDef(int index);
-    string GetLibrary(int index);
-    vector<Method> List;
+    void AddMethod(Method NewEntry); // Add a New Method
+    void AddMethodDef(string NewDef); // Add a New Method Definition
+    void AddLibrary(string NewLib); // Add a New Library
+    string GetMethodDef(int index); // Retrieves Method Def from index
+    string GetLibrary(int index); // Retrieves Library from index
+    vector<Method> MethodsInFile; // List of all the Methods in the Current File
 
   private:
-    string FileName;
-    vector<string> Libraries;
-    vector<string> FunctionDefs;
+    string FileName; // Name of the Current File
+    vector<string> Libraries; // Stores Included Libraries
+    vector<string> MethodDefs; // Stores Methods Definitions
 };
 
 File* New_File(string File_Name);
