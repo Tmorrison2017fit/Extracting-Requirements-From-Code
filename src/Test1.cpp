@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+int TestFunc(int value);
+
 int main()
 {
     int n, i;
@@ -30,4 +32,8 @@ int main()
     cout << "Average = " << average;
 
     return 0;
+}
+
+int TestFunc(int value){
+  value = 5;
 }
