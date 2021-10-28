@@ -5,12 +5,9 @@
 
 using namespace std;
 
-//------------------------------------------------------------------
-File::Method::Method(){
-};
-
-void File::Method::PutName(string MName){
-   MethodName = MName;
+//-------------------------Method Class---------------------------
+File::Method::Method(string MName){
+  MethodName = MName;
 };
 
 int File::Method::GetLength(){
@@ -42,11 +39,13 @@ vector<int> File::Method::GetLoopRange(int index){
   Range[1] = Loops[index][1];
   return Range;
 };
-//------------------------------------------------------------------
+//------------------------------File Class--------------------------
 File::File(string Name_of_File){
   FileName = Name_of_File;
 };
-
+void File::AddFileName(string Name){
+  FileName = Name;
+}
 void File::AddMethod(Method NewEntry){
   MethodsInFile.push_back(NewEntry);
 };
@@ -57,6 +56,10 @@ void File::AddMethodDef(string NewDef){
 
 void File::AddLibrary(string NewLib){
   Libraries.push_back(NewLib);
+};
+
+void File::AddPreprocessors(string preProc){
+  Preprocessors.push_back(preProc);
 };
 
 string File::GetMethodDef(int index){
@@ -78,6 +81,27 @@ string File::GetLibrary(int index){
   }
 };
 
+string File::GetPreprocessors(int index){
+  if(index < Preprocessors.size() && index >= 0){
+    return Preprocessors[index];
+  }
+  else{
+    return "Error: Index out of bounds";
+  }
+};
+
+
+int File::GetMethodDefLen(){
+  return MethodDefs.size();
+};
+
+int File::GetLibraryLen(){
+  return Libraries.size();
+};
+
+int File::GetPreprocessorsLen(){
+  return Preprocessors.size();
+};
 //------------------------------------------------------------------
 File* New_File(string File_Name){
   File *NFile = new File(File_Name);
