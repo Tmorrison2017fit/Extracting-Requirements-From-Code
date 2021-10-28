@@ -7,31 +7,50 @@
 
 using namespace std;
 
+void printFunction(File *FileObj);
+
 int main(int argc,char* argv[]){
 
-  // Allocates Memory to the File Class.
+
   File *TestFile = New_File(argv[0]);
-  // Creates a Method object.
-  File::Method obj;
-  // Calls a function within the Method Class.
-  obj.PutName("main");
-  // Adds the Method obj to the File Class.
-  TestFile->AddMethod(obj);
-  // Example on how to access the method within the File Class.
-  cout << TestFile->MethodsInFile[0].GetName() << endl;
-  // Not final, just used to test data storage
+  TestFile->AddFileName(argv[1]);
+  cout << "Reading File: " << argv[1]<< endl << endl;
   Read_File(argv[1], TestFile);
-
-  // Prints the stored data.
-  TestFile->MethodsInFile[0].AddLoopRange(15,20);
-  vector<int> Len = TestFile->MethodsInFile[0].GetLoopRange(0);
-
-  for( int i = Len[0]; i <= Len[1]; i++){
-    cout << TestFile->MethodsInFile[0].GetLine(i) << endl;
-  }
-
-
-
+  cout << "Printing Parsed Contents: " << endl << endl;
+  printFunction(TestFile);
 
   return 0;
+}
+
+void printFunction(File *FileObj){
+
+  int MethodDefs = FileObj->GetMethodDefLen();
+  int preProcLen = FileObj->GetPreprocessorsLen();
+  int LibLen = FileObj->GetLibraryLen();
+  int MethodLen = FileObj->MethodsInFile.size();
+
+  cout << "Lists of Included Libraries: " << endl;
+  for( int i = 0; i < LibLen ; i++){
+    cout << FileObj->GetLibrary(i) << endl;
+  }
+  cout << endl;
+  cout << "Lists of defined Preprocessors: " << endl;
+  for( int i = 0; i < preProcLen ; i++){
+    cout << FileObj->GetPreprocessors(i) << endl;
+  }
+  cout << endl;
+  cout << "Lists of Method Declarations: " << endl;
+  for( int i = 0; i < MethodDefs ; i++){
+    cout << FileObj->GetMethodDef(i) << endl;
+  }
+  cout << endl;
+  cout << "Lists of Methods: " << endl;
+  for( int i = 0; i < MethodLen ; i++){
+    int Lines = FileObj->MethodsInFile[i].GetLength();
+    for( int j = 0; j < Lines;j++){
+      cout << FileObj->MethodsInFile[i].GetLine(j) << endl;
+    }
+    cout << endl;
+  }
+
 }
