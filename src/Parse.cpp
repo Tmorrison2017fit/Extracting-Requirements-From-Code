@@ -1,29 +1,70 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <regex>
+#include <bits/stdc++.h>
 #include "Storage.h"
 #include "Parse.h"
 
 
+//Get rid of every character that is not a space or an alphanumeric character
+bool bad_chars(char c){
+  return c != ' ' && !isalpha(c); 
+}
 
-// void Parse_Method(File *Cur_File){
-//
-//
-//   int lineIterator;
-//   int methodIterator;
-//
-//   string line;
-//
-//
-//   for (methodIterator = 0; methodIterator <= Cur_File->MethodsInFile.size(); methodIterator++){
-//     for (lineIterator = 0; lineIterator <= Cur_File->MethodsInFile[methodIterator].GetLength(); lineIterator++){
-//       line = Cur_File->MethodsInFile[methodIterator].GetLine(lineIterator);
-//
-//       cout << line << endl;
-//     }
-//   }
-//
-// }
+
+//Get rid of all bad characters and replace them with a space
+string ReplaceBadChars(string badString){
+  replace_if(badString.begin(), badString.end(), bad_chars, ' ');
+  return badString;
+}
+
+//GRAB KEYWORDS AND MAYBE DATA TYPES FOR NOW
+
+//Grab all of the words from a method
+void Parse_Method(File *Cur_File){
+  int lineIterator;
+  int methodIterator;
+  string line;
+  
+  unordered_set<string> Method_Keywords;
+
+  unordered_set<string>:: iterator tokenIterator;
+
+
+  regex re("\\s");
+
+  for (methodIterator = 0; methodIterator <= Cur_File->MethodsInFile.size() - 1; methodIterator++){
+    for (lineIterator = 0; lineIterator <= Cur_File->MethodsInFile[methodIterator].GetLength(); lineIterator++){
+      line = Cur_File->MethodsInFile[methodIterator].GetLine(lineIterator);
+
+      //cout << "BAD LINE: " << line << endl;
+    
+      //Cut out all the non-alphanumeric chars in the input line
+      line = ReplaceBadChars(line);
+
+      cout << "CLEANED LINE: " << line <<endl;
+
+      //There is no reason to read blank lines
+      if(line.length() == 0){
+        continue;
+      }
+
+      //Split the line by whitespace, and then put the tokens in an unordered set for each line 
+      sregex_token_iterator first{line.begin(), line.end(), re, -1}, last;
+      unordered_set<string> tokens{first, last}; 
+        
+      cout << "Words in line:" << endl;
+      string::iterator stringIterator; 
+      for(tokenIterator = tokens.begin(); tokenIterator != tokens.end(); tokenIterator++){
+        cout << (*tokenIterator)  << endl;
+      }
+        
+      cout << endl << endl;
+
+    }
+  }
+}
 
 void Read_File(string file, File *Cur_File){
 
@@ -83,6 +124,6 @@ void Read_File(string file, File *Cur_File){
   }
   FileObj.close();
 
-  // Parse_Method(Cur_File);
+  Parse_Method(Cur_File);
 
 }
