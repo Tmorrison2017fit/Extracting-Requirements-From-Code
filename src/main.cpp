@@ -18,41 +18,41 @@ int main(int argc,char* argv[]){
   Read_File(argv[1], TestFile);
   cout << "Printing Parsed Contents: " << endl << endl;
   printFunction(TestFile);
-try
-              {
-                  SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-                  builder.DataSource = "reqex.database.windows.net";
-                  builder.UserID = "reqex";
-                  builder.Password = "Yatyas1833!!!";
-                  builder.InitialCatalog = "reqex";
-
-                  using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-                  {
-                      Console.WriteLine("\nQuery data example:");
-                      Console.WriteLine("=========================================\n");
-
-                      String sql = "SELECT name, collation_name FROM sys.databases";
-
-                      using (SqlCommand command = new SqlCommand(sql, connection))
-                      {
-                          connection.Open();
-                          using (SqlDataReader reader = command.ExecuteReader())
-                          {
-                              while (reader.Read())
-                              {
-                                  Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
-                              }
-                          }
-                      }
-                  }
-              }
-              catch (SqlException e)
-              {
-                  Console.WriteLine(e.ToString());
-              }
-              Console.ReadLine();
-  return 0;
-}
+// try
+//               {
+//                   SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+//                   builder.DataSource = "reqex.database.windows.net";
+//                   builder.UserID = "reqex";
+//                   builder.Password = "Yatyas1833!!!";
+//                   builder.InitialCatalog = "reqex";
+//
+//                   using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+//                   {
+//                       Console.WriteLine("\nQuery data example:");
+//                       Console.WriteLine("=========================================\n");
+//
+//                       String sql = "SELECT name, collation_name FROM sys.databases";
+//
+//                       using (SqlCommand command = new SqlCommand(sql, connection))
+//                       {
+//                           connection.Open();
+//                           using (SqlDataReader reader = command.ExecuteReader())
+//                           {
+//                               while (reader.Read())
+//                               {
+//                                   Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
+//                               }
+//                           }
+//                       }
+//                   }
+//               }
+//               catch (SqlException e)
+//               {
+//                   Console.WriteLine(e.ToString());
+//               }
+//               Console.ReadLine();
+//   return 0;
+// }
 
 void printFunction(File *FileObj){
 

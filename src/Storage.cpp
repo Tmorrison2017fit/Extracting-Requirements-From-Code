@@ -62,6 +62,10 @@ void File::AddPreprocessors(string preProc){
   Preprocessors.push_back(preProc);
 };
 
+void File::AddComment(string CommentStr){
+  Comments.push_back(CommentStr);
+};
+
 string File::GetMethodDef(int index){
   if(index < MethodDefs.size() && index >= 0){
     return MethodDefs[index];
@@ -90,6 +94,15 @@ string File::GetPreprocessors(int index){
   }
 };
 
+string File::GetComment(int index){
+  if(index < Comments.size() && index >= 0){
+    return Comments[index];
+  }
+  else{
+    return "Error: Index out of bounds";
+  }
+};
+
 
 int File::GetMethodDefLen(){
   return MethodDefs.size();
@@ -101,6 +114,10 @@ int File::GetLibraryLen(){
 
 int File::GetPreprocessorsLen(){
   return Preprocessors.size();
+};
+
+int File::GetCommentLen(){
+  return Comments.size();
 };
 //------------------------------------------------------------------
 File* New_File(string File_Name){

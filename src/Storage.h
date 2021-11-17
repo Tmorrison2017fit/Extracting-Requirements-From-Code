@@ -19,7 +19,7 @@ class File{
         void AddLoopRange(int begin, int finish);
         vector<int> GetLoopRange(int index);
       private:
-        
+
         string MethodName; // Name of the current Method
         vector<string> Lines; // Stores the entire Method
         vector<int> Variables; // Stores line number of where the variable are at
@@ -33,12 +33,15 @@ class File{
     void AddMethodDef(string NewDef); // Add a New Method Definition
     void AddLibrary(string NewLib); // Add a New Library
     void AddPreprocessors(string preProc);
+    void AddComment(string CommentStr);
     string GetMethodDef(int index); // Retrieves Method Def from index
     string GetLibrary(int index); // Retrieves Library from index
     string GetPreprocessors(int index);
+    string GetComment(int index);
     int GetMethodDefLen();
     int GetLibraryLen();
     int GetPreprocessorsLen();
+    int GetCommentLen();
 
     vector<Method> MethodsInFile; // List of all the Methods in the Current File
   private:
