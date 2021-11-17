@@ -28,7 +28,7 @@ void printFunction(File *FileObj){
   int preProcLen = FileObj->GetPreprocessorsLen();
   int LibLen = FileObj->GetLibraryLen();
   int MethodLen = FileObj->MethodsInFile.size();
-
+  int CommentLen = FileObj->GetCommentLen();
   cout << "Lists of Included Libraries: " << endl;
   for( int i = 0; i < LibLen ; i++){
     cout << FileObj->GetLibrary(i) << endl;
@@ -51,6 +51,13 @@ void printFunction(File *FileObj){
       cout << FileObj->MethodsInFile[i].GetLine(j) << endl;
     }
     cout << endl;
+  }
+
+  cout << endl;
+
+  cout << "Lists of Comments: " << endl;
+  for( int i = 0; i < CommentLen ; i++){
+    cout << FileObj->GetComment(i) << endl;
   }
 
 }
