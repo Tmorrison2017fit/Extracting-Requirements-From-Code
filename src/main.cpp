@@ -51,8 +51,8 @@ int main(int argc,char* argv[]){
 //                   Console.WriteLine(e.ToString());
 //               }
 //               Console.ReadLine();
-//   return 0;
-// }
+  return 0;
+}
 
 void printFunction(File *FileObj){
 
