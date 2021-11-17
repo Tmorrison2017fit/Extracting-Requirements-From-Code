@@ -19,9 +19,9 @@ class File{
         void AddLoopRange(int begin, int finish);
         vector<int> GetLoopRange(int index);
       private:
-        string MethodName;
-
-        vector<string> Lines; // Stores file line by line
+        
+        string MethodName; // Name of the current Method
+        vector<string> Lines; // Stores the entire Method
         vector<int> Variables; // Stores line number of where the variable are at
         vector<vector<int>> Loops;
 
@@ -39,14 +39,14 @@ class File{
     int GetMethodDefLen();
     int GetLibraryLen();
     int GetPreprocessorsLen();
-    vector<Method> MethodsInFile; // List of all the Methods in the Current File
 
+    vector<Method> MethodsInFile; // List of all the Methods in the Current File
   private:
     string FileName; // Name of the Current File
-    vector<string> Libraries; // Stores Included Libraries
-    vector<string> MethodDefs; // Stores Methods Definitions
-    vector<string> Preprocessors;
-    vector<string> Comments;
+    vector<string> Libraries; // List of Included Libraries
+    vector<string> MethodDefs; // Lists of Methods Definitions
+    vector<string> Preprocessors; // Lists of Preprocessors
+    vector<string> Comments; // List of Comments
 };
 
 File* New_File(string File_Name);
