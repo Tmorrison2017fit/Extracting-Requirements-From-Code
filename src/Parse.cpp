@@ -2,7 +2,6 @@
 #include <vector>
 #include <fstream>
 #include <regex>
-#include <bits/stdc++.h>
 #include "Storage.h"
 #include "Parse.h"
 
