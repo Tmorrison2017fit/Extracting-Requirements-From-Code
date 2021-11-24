@@ -1,9 +1,15 @@
 #include <iostream>
 #include <string>
+
 #include "Storage.cpp"
 #include "Parse.cpp"
 #include "Storage.h"
 #include "Parse.h"
+
+
+//#include "Analyze.h"
+//#include "Analyze.cpp"
+
 
 using namespace std;
 
@@ -11,13 +17,28 @@ void printFunction(File *FileObj);
 
 int main(int argc,char* argv[]){
 
+  //An input file is needed
+  if(!argv[1]){
+    cout << "Enter an input file" << endl;
+    return 0;
+  }
+
 
   File *TestFile = New_File(argv[0]);
   TestFile->AddFileName(argv[1]);
   cout << "Reading File: " << argv[1]<< endl << endl;
   Read_File(argv[1], TestFile);
+
+
+  cout << "Parsing File: " << argv[1] << endl << endl;
+  Parse_File_Methods(TestFile);
+
   cout << "Printing Parsed Contents: " << endl << endl;
   printFunction(TestFile);
+
+  //cout << "Analyzing Text: " << endl << endl;
+  //Analyze_Text(TestFile);
+
 // try
 //               {
 //                   SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -87,9 +108,24 @@ void printFunction(File *FileObj){
 
   cout << endl;
 
+
+  cout << "Lists of Cleaned Methods: " << endl;
+  for( int i = 0; i < MethodLen ; i++){
+    int Lines = FileObj->MethodsInFile[i].GetCleanedLength();
+    for( int j = 0; j < Lines;j++){
+      cout << FileObj->MethodsInFile[i].GetCleanedLine(j) << endl;
+    }
+    cout << endl;
+  }
+
+  cout << endl;
+
+  
   cout << "Lists of Comments: " << endl;
   for( int i = 0; i < CommentLen ; i++){
     cout << FileObj->GetComment(i) << endl;
   }
+
+  cout << endl;
 
 }

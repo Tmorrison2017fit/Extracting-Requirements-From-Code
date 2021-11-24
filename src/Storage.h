@@ -18,10 +18,20 @@ class File{
         void AddLine(string Line);
         void AddLoopRange(int begin, int finish);
         vector<int> GetLoopRange(int index);
+
+
+        //Cleaned lines are only going in methods
+        int GetCleanedLength();
+        string GetCleanedLine(int index);
+        void AddCleanedLine(string Line);
+
       private:
 
         string MethodName; // Name of the current Method
         vector<string> Lines; // Stores the entire Method
+
+        vector<string> Cleaned_Lines;  //Stores lines after removing bad characters
+
         vector<int> Variables; // Stores line number of where the variable are at
         vector<vector<int>> Loops;
 

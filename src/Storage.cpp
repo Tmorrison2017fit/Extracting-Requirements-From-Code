@@ -39,6 +39,21 @@ vector<int> File::Method::GetLoopRange(int index){
   Range[1] = Loops[index][1];
   return Range;
 };
+
+
+int File::Method::GetCleanedLength(){
+  return Cleaned_Lines.size();
+}
+ 
+string File::Method::GetCleanedLine(int index){
+  return Cleaned_Lines[index];
+};
+
+void File::Method::AddCleanedLine(string Line){
+  Cleaned_Lines.push_back(Line);
+};
+
+
 //------------------------------File Class--------------------------
 File::File(string Name_of_File){
   FileName = Name_of_File;
