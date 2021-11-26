@@ -110,63 +110,63 @@ void Read_File(string file, File* Cur_File, LinkedList* Tree){
   FileObj.close();
 }
 
-
-//Determine if a character is a bad character
-//Bad characters are anything besides a-zA-z, 0-9, ", '
-bool bad_chars(char c){
-  return c != ' ' && !isalnum(c) && c != '\"' && c != '\'';
-}
-
-
-
-//Replace all bad characters in a line with a space
-string ReplaceBadChars(string badString){
-  replace_if(badString.begin(), badString.end(), bad_chars, ' ');
-  return badString;
-}
-
-
-
-//TODO: Merge all of the text analyzer stuff into a new seperate file
-// Parsing file methods will come down to taking out the bad characters and putting the input in a list
-// to send to the TA
-
-//Grab all of the keywords from the methods in a file
-void Parse_File_Methods(File *Cur_File){
-    int lineIterator;
-    int methodIterator;
-    string line;
-
-
-    //Since we start at 0, all the sizes and lengths need to be decreased by 1
-    for (methodIterator = 0; methodIterator <= Cur_File->MethodsInFile.size() - 1; methodIterator++){
-      for (lineIterator = 0; lineIterator <= Cur_File->MethodsInFile[methodIterator].GetLength() - 1; lineIterator++){
-        line = Cur_File->MethodsInFile[methodIterator].GetLine(lineIterator);
-
-        //There is no reason to read blank lines
-        if(line.length() == 0){
-            continue;
-        }
-
-
-        cout << "BAD LINE: " << line << endl;
-
-        //Cut out all the bad characters in the input line
-        line = ReplaceBadChars(line);
-
-        //Output the cleaned line to stdout
-        cout << "CLEANED LINE: " << line <<endl;
-        cout << endl << endl;
-
-        //If we got rid of all the characters in a line, it will be empty and shouldn't be added
-        if(line.length() == 0){
-          continue;
-        }
-
-        Cur_File->MethodsInFile[methodIterator].AddCleanedLine(line);
-
-
-      }
-
-    }
-}
+//
+// //Determine if a character is a bad character
+// //Bad characters are anything besides a-zA-z, 0-9, ", '
+// bool bad_chars(char c){
+//   return c != ' ' && !isalnum(c) && c != '\"' && c != '\'';
+// }
+//
+//
+// 
+// //Replace all bad characters in a line with a space
+// string ReplaceBadChars(string badString){
+//   replace_if(badString.begin(), badString.end(), bad_chars, ' ');
+//   return badString;
+// }
+//
+//
+//
+// //TODO: Merge all of the text analyzer stuff into a new seperate file
+// // Parsing file methods will come down to taking out the bad characters and putting the input in a list
+// // to send to the TA
+//
+// //Grab all of the keywords from the methods in a file
+// void Parse_File_Methods(File *Cur_File){
+//     int lineIterator;
+//     int methodIterator;
+//     string line;
+//
+//
+//     //Since we start at 0, all the sizes and lengths need to be decreased by 1
+//     for (methodIterator = 0; methodIterator <= Cur_File->MethodsInFile.size() - 1; methodIterator++){
+//       for (lineIterator = 0; lineIterator <= Cur_File->MethodsInFile[methodIterator].GetLength() - 1; lineIterator++){
+//         line = Cur_File->MethodsInFile[methodIterator].GetLine(lineIterator);
+//
+//         //There is no reason to read blank lines
+//         if(line.length() == 0){
+//             continue;
+//         }
+//
+//
+//         cout << "BAD LINE: " << line << endl;
+//
+//         //Cut out all the bad characters in the input line
+//         line = ReplaceBadChars(line);
+//
+//         //Output the cleaned line to stdout
+//         cout << "CLEANED LINE: " << line <<endl;
+//         cout << endl << endl;
+//
+//         //If we got rid of all the characters in a line, it will be empty and shouldn't be added
+//         if(line.length() == 0){
+//           continue;
+//         }
+//
+//         Cur_File->MethodsInFile[methodIterator].AddCleanedLine(line);
+//
+//
+//       }
+//
+//     }
+// }
