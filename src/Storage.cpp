@@ -1,10 +1,112 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <queue>
 #include "Storage.h"
 
 using namespace std;
 
+// Node Class Constructor.
+Node::Node(){
+  Parent = NULL;
+};
+// LinkedList Class Constructor.
+LinkedList::LinkedList(){
+  Root = NULL;
+};
+// Creates and Updates the Linked List Root.
+void LinkedList::UpdateRoot(){
+  Node* RootNode = new Node();
+  RootNode->Name = "main";
+  Root = RootNode;
+
+};
+// Creates the new nodes and attaches them onto the linked list.
+void LinkedList::CreateNode(string NodeName, string ParentName){
+  Node* newNode= new Node();
+  Node* ParentPointer;
+  newNode->Parent=NULL;
+  newNode->Name = NodeName;
+  ParentPointer = SearchParent(ParentName); // Searches for the Nodes Parent in the Tree.
+  ParentPointer->Children.push_back(newNode);
+  newNode->Parent = ParentPointer;
+};
+// Checks to see if the string passed exists within the current Linked List.
+// Uses Breadth-First Search.
+bool LinkedList::InLinkedList(string NodeName){
+  queue<Node*> SearchQueue;
+  Node* Temp;
+  SearchQueue.push(Root);
+  while(!SearchQueue.empty()){
+    Temp = SearchQueue.front();
+    SearchQueue.pop();
+    if(Temp->Name == NodeName){
+      return true;
+    }
+    if(!Temp->Children.empty()){
+      for(int i = 0; i< Temp->Children.size(); i++){
+        if(Temp->Children[i] != NULL){
+          SearchQueue.push(Temp->Children[i]);
+        }
+      }
+    }
+  }
+  return false;
+};
+
+// Searches for the Parent Node pointer, return NULL if nothing found.
+// Uses Breadth-First Search.
+Node* LinkedList::SearchParent(string ParentName){
+
+  queue<Node*> SearchQueue;
+  Node* Temp;
+  SearchQueue.push(Root);
+  while(!SearchQueue.empty()){
+    Temp = SearchQueue.front();
+    SearchQueue.pop();
+    if(Temp->Name == ParentName){
+      return Temp;
+    }
+    if(!Temp->Children.empty()){
+      for(int i = 0; i< Temp->Children.size(); i++){
+        if(Temp->Children[i] != NULL){
+          SearchQueue.push(Temp->Children[i]);
+        }
+      }
+    }
+  }
+  return NULL;
+};
+
+// Prints out the Linked List.
+// Uses Breadth-First Search.
+void LinkedList::PrintList(){
+  queue<Node*> SearchQueue;
+  Node* Temp;
+  string PrevParent;
+  SearchQueue.push(Root);
+  while(!SearchQueue.empty()){
+    Temp = SearchQueue.front();
+
+    SearchQueue.pop();
+    if(Temp->Name == "main"){
+      cout << "Root: main" << endl;
+    }
+    else if(Temp->Parent != NULL && (PrevParent == Temp->Parent->Name)){
+      cout << "   [-]Child: "<<Temp->Name << endl;
+    }
+    else if(Temp->Parent != NULL && (PrevParent != Temp->Parent->Name)){
+      cout << "[+]Parent: "<< Temp->Parent->Name << "\n   [-]Child: "<<Temp->Name << endl;
+      PrevParent = Temp->Parent->Name;
+    }
+
+    if(!Temp->Children.empty()){
+      for(int i = 0; i< Temp->Children.size(); i++){
+        SearchQueue.push(Temp->Children[i]);
+      }
+    }
+  }
+};
 //-------------------------Method Class---------------------------
 File::Method::Method(string MName){
   MethodName = MName;
@@ -120,6 +222,24 @@ int File::GetCommentLen(){
   return Comments.size();
 };
 //------------------------------------------------------------------
+string StripString(string str){
+  string temp = str;
+  int index;
+  string final;
+  index = temp.find('(');
+  temp = temp.erase(index,temp.size());
+  index = temp.find(' ');
+  temp = temp.erase(0,index+1);
+  for(int i = 0; i < temp.size();i++){
+    if(temp[i] != ' '){
+      final += temp[i];
+    }
+  }
+
+  return final;
+};
+
+
 File* New_File(string File_Name){
   File *NFile = new File(File_Name);
   return NFile;

@@ -3,8 +3,28 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <queue>
 using namespace std;
 
+class Node{
+  public:
+    Node();
+    string Name; // Name of the Node
+    Node* Parent; // Pointer to the Node's Parent
+    vector <Node*> Children; // Vector of pointers to all of the nodes children.
+};
+
+class LinkedList{
+  public:
+    LinkedList();
+    Node* Root; // Head of the Linked List.
+    void UpdateRoot(); // Creates the Root.
+    void CreateNode(string NodeName, string ParentName); // Creates nodes.
+    bool InLinkedList( string NodeName); // Checks to see if something is in the list.
+    Node* SearchParent(string ParentName); // Searches for the specified parent.
+    void PrintList(); // Prints the List.
+
+};
 
 class File{
   public:
@@ -52,6 +72,7 @@ class File{
     vector<string> Comments; // List of Comments
 };
 
-File* New_File(string File_Name);
+string StripString(string str);
 
+File* New_File(string File_Name);
 #endif
