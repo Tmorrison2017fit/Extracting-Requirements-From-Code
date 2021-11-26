@@ -8,16 +8,18 @@
 
 
 //Reads the input File and stores the contents in a File class object
-void Read_File(string file, File *Cur_File){
+void Read_File(string file, File* Cur_File, LinkedList* Tree){
 
   fstream FileObj;
-  bool inMethod = false;
+
   int BraceCounter = 0;
   int split;
-  int newline;
+  string CurrentMethod;
   string MethodName;
   FileObj.open(file,ios::in);
   if (FileObj.is_open()){
+      bool inLink = false;
+      bool inMethod = false;
       string temp;
       int MethodIndex;
       while(getline(FileObj, temp)){
@@ -35,16 +37,15 @@ void Read_File(string file, File *Cur_File){
             Cur_File->AddComment(temp);
           }
           else if ((temp.find('(') != -1) && (temp.find(')') != -1)
-          && (temp.find(';') == -1)){ // finds function
+          && (temp.find(';') == -1)){ //---found function start---
             // Strips name of Method.
-            MethodName = temp;
-            split = temp.find('(');
-            MethodName = MethodName.erase(split,MethodName.size());
-            split = temp.find(' ');
-            MethodName = MethodName.erase(0,split+1);
-
+            MethodName = StripString(temp);
+            //------Linked List-------
+            if(MethodName == "main"){
+              Tree->UpdateRoot();
+            }
+            //------Linked List-------
             File::Method newObj(MethodName);
-
             Cur_File->AddMethod(newObj);
             MethodIndex = Cur_File->MethodsInFile.size() - 1;
             if (temp.find('{') == -1){
@@ -54,13 +55,28 @@ void Read_File(string file, File *Cur_File){
             else{
               Cur_File->MethodsInFile[MethodIndex].AddLine(temp);
             }
-          }
+          }//---found function end---
           if(temp.find('{') != -1){
             inMethod = true;
             BraceCounter++;
           }
         }
-        else{ // In a method
+        else{ // -----------------------------In a method------------------------------
+          if((temp.find('(') != -1) && (temp.find(')') != -1)
+          && (temp.find(';') != -1) && (temp.find("for") == -1) && temp.find("<<") == -1){
+            CurrentMethod = StripString(temp);
+            if(MethodName == "main"){
+              Tree->CreateNode(CurrentMethod, MethodName); // New
+            }
+            else{
+              inLink = Tree->InLinkedList(MethodName);
+              if(inLink == true){
+                Tree->CreateNode(CurrentMethod, MethodName); // New
+              }
+            }
+
+          }
+          //--------------Extract Comments-------------
           if(temp.find("//") != -1){
             if(temp.find(';') != -1){
               string commentTemp = temp;
@@ -72,6 +88,7 @@ void Read_File(string file, File *Cur_File){
               Cur_File->AddComment(temp);
             }
           }
+          //--------------Extract Comments-------------
           else{
             Cur_File->MethodsInFile[MethodIndex].AddLine(temp);
           }
@@ -85,6 +102,7 @@ void Read_File(string file, File *Cur_File){
             inMethod = false;
           }
         }
+        // -----------------------------In a method------------------------------
       }
   }
   FileObj.close();
