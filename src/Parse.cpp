@@ -2,8 +2,7 @@
 #include <vector>
 #include <fstream>
 
-
-//#include <codecvt>
+#include <algorithm>
 
 #include "Storage.h"
 #include "Parse.h"

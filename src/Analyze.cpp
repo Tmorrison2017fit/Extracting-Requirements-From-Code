@@ -1,11 +1,9 @@
 #include <string>
+
+
 #include <vector>
-
-
-/*
 #include <list>
-#include <codecvt>
-*/
+
 
 #include "Storage.h"
 #include "Parse.h"
@@ -16,14 +14,55 @@
 
 
 
+/* 
+So all the input should be in ASCII anyways, and we really aren't expecting any special
+Unicode Characters, so really we should be able to convert between strings and wstrings
+without needing to worry about any UTF-16 inputs
+*/
 
-int StringToWString(std::wstring &ws, const std::string &s){
+int String2WString(const std::string &str, std::wstring &wstr){
 
-  std::wstring wsTmp(s.begin(), s.end());
+  std::wstring wstrTmp(str.begin(), str.end());
 
-  ws = wsTmp;
+  wstr = wstrTmp;
 
   return 0;
+}
+
+
+int WString2String(const std::wstring &wstr, std::string &str){
+
+  std::string strTmp(wstr.begin(), wstr.end());
+
+  str = strTmp;
+
+  return 0;
+}
+
+
+/*
+So FreeLing needs to use lists of words rather than vectors, so I think it'd be easier to
+just convert between the two rather than rework the entire code structure. Since it's calling
+on an iterator, the original structure is being replaced by the new one, so it won't have any
+massive issues with space, the only thing I'd be worried about is time.
+
+Just the way the functions look, the time would be O(n), and this is being done on every line
+*/
+std::vector<string> List2Vector(std::list<string> &inputList){
+
+  vector<string> outVect{make_move_iterator(begin(inputList)),
+                         make_move_iterator(end(inputList))};
+
+  return outVect;
+}
+
+
+std::list<string> Vector2List(std:: vector<string> &inputVector){
+
+  list<string> outList{make_move_iterator(begin(inputVector)),
+                       make_move_iterator(end(inputVector))};
+
+  return outList;
 }
 
 
@@ -53,7 +92,7 @@ freeling::maco_options my_maco_options(const wstring &lang, const wstring &lpath
 
 void Analyze_Text(File *Cur_File){
 
-	//Set the locale for freeling to use, UTF-8
+    //Set the locale for freeling to use, UTF-8
     freeling::util::init_locale(L"default");
 
     //Set the default language to English text
@@ -98,20 +137,18 @@ void Analyze_Text(File *Cur_File){
 
 
     wstring CleanedInput = L"";
-    wstring Line;
-    string temp;
+    wstring W_Line;
+    string Line;
 
     for(int methodIterator = 0; methodIterator != Cur_File->MethodsInFile.size() - 1; methodIterator++){
 
     	for(int lineIterator = 0; lineIterator != Cur_File->MethodsInFile[methodIterator].GetCleanedLength(); lineIterator++){
-    		temp = Cur_File->MethodsInFile[methodIterator].GetCleanedLine(lineIterator);
+    		Line = Cur_File->MethodsInFile[methodIterator].GetCleanedLine(lineIterator);
 
-    		StringToWString(Line, temp);
-    		CleanedInput += Line + L"\n";
+    		String2WString(Line, W_Line);
+    		CleanedInput += W_Line + L"\n";
     	}
     }
-
-
 
 
 
@@ -124,19 +161,9 @@ void Analyze_Text(File *Cur_File){
     //Split list of words into sentences
     list<freeling::sentence> sentenceList = sp.split(wordList);
 
-    
-
-    /*
-    One-Liner to Copy All elements of a list into a vector, then erase the list 
-
-    Some vector of type T                           Some lists of type T
-    vector<string> vecName{std::make_move_iterator(std::begin(L)), std::make_move_iterator(std::end(L))};
-
-    */
 
     morfo.analyze(sentenceList);
     tagger.analyze(sentenceList);
-
 
 
     PrintSentences(sentenceList);

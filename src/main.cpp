@@ -7,8 +7,8 @@
 #include "Parse.h"
 
 
-//#include "Analyze.h"
-//#include "Analyze.cpp"
+#include "Analyze.h"
+#include "Analyze.cpp"
 
 
 using namespace std;
@@ -25,8 +25,14 @@ int main(int argc,char* argv[]){
   //Parse_File_Methods(TestFile);
   cout << "Printing Parsed Contents: " << endl << endl;
   printFunction(TestFile);
+
   cout << "Printing Logic Flow Tree: " << endl << endl;
   LogicTree->PrintList(); // Prints the Linked List that was created in Read_File();
+
+
+  cout << "Analyzing Text: " << endl << endl;
+  Analyze_Text(TestFile);
+
 // try
 //               {
 //                   SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
