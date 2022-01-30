@@ -1,0 +1,8 @@
+LAYOUT(MainScreen, 760, 432)
+	ITEM(Upp::DocEdit, dv___0, LeftPosZ(8, 344).VSizePosZ(68, 16))
+	ITEM(Upp::Button, dv___1, SetLabel(t_("Generate")).HCenterPosZ(80, 36).VCenterPosZ(32, 8))
+	ITEM(Upp::DocEdit, dv___2, RightPosZ(12, 272).VSizePosZ(64, 12))
+	ITEM(Upp::LabelBox, dv___3, SetLabel(t_("INPUT")).LeftPosZ(12, 64).TopPosZ(28, 24))
+	ITEM(Upp::LabelBox, dv___4, SetLabel(t_("OUTPUT")).RightPosZ(20, 64).TopPosZ(28, 24))
+END_LAYOUT
+
