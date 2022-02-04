@@ -1,14 +1,5 @@
 #include <CtrlLib/CtrlLib.h>
 
-//This layout include might need to be changed around
-//depending on where it is stored at
-
-// TODO: CHANGE ReqExGUI TO WHATEVER YOU NAMED YOUR PROJECT AS 
-#define LAYOUTFILE <ReqExGUI/GUILayout.lay>
-
-#include <CtrlCore/lay.h>
-
-
 using namespace Upp;
 
 /*
@@ -19,12 +10,22 @@ TODO LAYOUT
 */
 
 
-//An object to hold the entire GUI
-struct MainScreenDlg : public WithMainScreen<TopWindow> {
+
+
+struct GUILayout : TopWindow {
 	
-	//Create a MenuBar object, called menu, where the top menu is stored
+	
+	//Create a Menu Bar object, called menu, where the top menu is stored
 	MenuBar menu;
 	
+	//Label Box is used to show areas on the Window, I = Input O = Output
+	LabelBox I, O;
+	
+	//Doc Edit allows us to enter in large blocks of text
+	DocEdit InputField, OutputField;
+	
+	//Generate Button to place in center of window 
+	Button GenButton;
 	
 	/*
 	This is just a dummy function to hold operations that the
@@ -37,26 +38,23 @@ struct MainScreenDlg : public WithMainScreen<TopWindow> {
 		PromptOK("foo");
 	}
 	
-	
 	//Function to exit the program from the close option in Other
 	void Exit() {
 		if(PromptOKCancel("Exit ReqEx?"))
 			Break();
 	}
 	
-	
 	/*
 	Options for the 'File' column in the menu bar
 	
-	Their will probably be different opening options for different structs
+	Their will probably be different opening options for different types
 	(Directory, File, etc.)
 	*/
 	void SubMenuFile(Bar& bar) {
 		bar.Add("Open File", [=] { DummyFunc(); });
 		bar.Add("Open Folder", [=] {DummyFunc(); });
 	}
-	
-	
+		
 	/*
 	Options for the 'Generate' column in the menu bar
 	
@@ -69,7 +67,6 @@ struct MainScreenDlg : public WithMainScreen<TopWindow> {
 		bar.Add("Advanced Generate", [=] {DummyFunc(); });
 	}
 	
-	
 	//Options for the 'Save' column in the menu bar
 	void SubMenuSave(Bar& bar) {
 		bar.Add("Save Output", [=] { DummyFunc(); });
@@ -81,8 +78,7 @@ struct MainScreenDlg : public WithMainScreen<TopWindow> {
 		bar.Add("Exit", [=] {Exit(); });
 	}
 	
-	
-	//THe Main Menu has 4 subcategories at the moment
+	//The Main Menu has 4 subcategories at the moment
 	void MainMenu(Bar& bar) {
 		bar.Sub("File", [=](Bar& bar) { SubMenuFile(bar); });
 		
@@ -94,29 +90,36 @@ struct MainScreenDlg : public WithMainScreen<TopWindow> {
 		//We could move "Generate" into the top menu if window space becomes an issue
 	}
 	
-	
-	//Add the other items from the template in the Layout file
-	MainScreenDlg();
+	GUILayout() {
+		Title("ReqEx").Zoomable().Sizeable();
+		
+		//Adds the menu bar onto the window
+		AddFrame(menu);
+		menu.Set([=](Bar& bar) {MainMenu(bar); });
+		
+		//Sets the dimensions for the other widgets on the window
+		*this
+			<< I.SetLabel("INPUT").LeftPosZ(12,64).TopPosZ(28,24)
+			<< O.SetLabel("OUTPUT").RightPosZ(20,64).TopPosZ(28,24)
+			<< InputField.LeftPosZ(8,344).VSizePosZ(68,16)
+			<< OutputField.RightPosZ(12,272).VSizePosZ(64,12)
+			<< GenButton.SetLabel("Generate").HCenterPosZ(80,36).VCenterPosZ(32.8)
+			;
+		
+	}	
 };
 
-//Runs the preset template and the Menu bar as a whole application
-MainScreenDlg::MainScreenDlg()
-{
-	/*
-	Give the window a name, add a frame to the window, and make the menu
-	a Main Menu bar
-	*/
-	CtrlLayout(*this, "ReqEx");
-	AddFrame(menu);
-	menu.Set([=](Bar& bar) {MainMenu(bar); });
-	
-}
-	
 
-//Main controller for the program
-GUI_APP_MAIN
-{
-	//Run the program, and allow it to be resized
-	MainScreenDlg().Sizeable().Run();
+
+GUI_APP_MAIN {
+	GUILayout gui;
+	
+	
+	// Center X, Center Y, X Distance, Y Distance
+	gui.SetRect(0,0,1000,500);
+	
+	
+	gui.Run();
+
 
 }

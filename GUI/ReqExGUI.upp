@@ -2,8 +2,7 @@ uses
 	CtrlLib;
 
 file
-	~/upp/MyApps/ReqExGUI/main.cpp,
-	GUILayout.lay;
+	/home/zbruggen/IDE/upp/MyApps/ReqExGUI/main.cpp;
 
 mainconfig
 	"" = "GUI";
