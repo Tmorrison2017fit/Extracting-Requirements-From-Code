@@ -5,12 +5,15 @@ using namespace Upp;
 /*
 TODO LAYOUT
 	Fix window resizing issue
+	
 	Implement button functions
+		Currently Implemented
+		-> Exit
+		-> Middle/ Normal Generate
+		-> Save Output
+		
 	Add other panels and features
 */
-
-
-
 
 struct GUILayout : TopWindow {
 	
@@ -24,8 +27,42 @@ struct GUILayout : TopWindow {
 	//Doc Edit allows us to enter in large blocks of text
 	DocEdit InputField, OutputField;
 	
-	//Generate Button to place in center of window 
+	//Generate button in the center of the window
 	Button GenButton;
+	
+	
+	//Copies text from the input field and pastes to the output field
+	//This can then be switched up to run the actual program
+	void IOFieldCopy() {
+		
+		//We can save the input text as a string, useful to send to
+		//analyzing functions
+		String inText = InputField.Get();
+		
+		//Sets a string into the output field
+		OutputField.Set(inText);
+		
+	}
+	
+	
+	//Function to save whatever is in the output field to a file
+	void OutputFieldSave() {
+		
+		String outText = OutputField.Get();
+		
+		
+		//Look into relative file paths, right now we can use absolutes
+		String file = "TestOutput.txt";
+		
+		//String file = "/home/zbruggen/Documents/TestOutput.txt";
+		
+		//If we can write to the file successfully, we indicate that
+		if(SaveFile(file, outText))
+			PromptOK("SUCCESS");
+		else
+			PromptOK("FAIL");
+		
+	}
 	
 	/*
 	This is just a dummy function to hold operations that the
@@ -37,6 +74,7 @@ struct GUILayout : TopWindow {
 	void DummyFunc() {
 		PromptOK("foo");
 	}
+	
 	
 	//Function to exit the program from the close option in Other
 	void Exit() {
@@ -63,13 +101,13 @@ struct GUILayout : TopWindow {
 	be moved up to the menu for more space
 	*/
 	void SubMenuGen(Bar& bar) {
-		bar.Add("Normal Generate", [=] { DummyFunc(); });
+		bar.Add("Normal Generate", [=] { IOFieldCopy(); });
 		bar.Add("Advanced Generate", [=] {DummyFunc(); });
 	}
 	
 	//Options for the 'Save' column in the menu bar
 	void SubMenuSave(Bar& bar) {
-		bar.Add("Save Output", [=] { DummyFunc(); });
+		bar.Add("Save Output", [=] { OutputFieldSave(); });
 	}
 	
 	//Options in the 'Other' column of the menu bar
@@ -103,10 +141,15 @@ struct GUILayout : TopWindow {
 			<< O.SetLabel("OUTPUT").RightPosZ(20,64).TopPosZ(28,24)
 			<< InputField.LeftPosZ(8,344).VSizePosZ(68,16)
 			<< OutputField.RightPosZ(12,272).VSizePosZ(64,12)
-			<< GenButton.SetLabel("Generate").HCenterPosZ(80,36).VCenterPosZ(32.8)
+			<< GenButton.SetLabel("Generate").HCenterPosZ(80,36).VCenterPosZ(32,8)
 			;
 		
-	}	
+		//Middle Generate Button Functionality
+		GenButton << [=] {
+			IOFieldCopy();
+		};
+		
+	}
 };
 
 
