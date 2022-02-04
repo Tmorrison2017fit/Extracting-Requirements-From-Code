@@ -1,0 +1,10 @@
+uses
+	CtrlLib;
+
+file
+	~/upp/MyApps/ReqExGUI/main.cpp,
+	GUILayout.lay;
+
+mainconfig
+	"" = "GUI";
+

@@ -2,10 +2,11 @@
 
 //This layout include might need to be changed around
 //depending on where it is stored at
+
+// TODO: CHANGE ReqExGUI TO WHATEVER YOU NAMED YOUR PROJECT AS 
 #define LAYOUTFILE <ReqExGUI/GUILayout.lay>
 
 #include <CtrlCore/lay.h>
-
 
 
 using namespace Upp;
