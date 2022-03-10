@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <queue>
+#include <cctype>
 #include "Storage.h"
 
 using namespace std;
@@ -146,7 +147,7 @@ vector<int> File::Method::GetLoopRange(int index){
 int File::Method::GetCleanedLength(){
   return Cleaned_Lines.size();
 }
- 
+
 string File::Method::GetCleanedLine(int index){
   return Cleaned_Lines[index];
 };
@@ -238,21 +239,57 @@ int File::GetCommentLen(){
 };
 //------------------------------------------------------------------
 string StripString(string str){
-  string temp = str;
-  int index;
-  string final;
-  index = temp.find('(');
-  temp = temp.erase(index,temp.size());
-  index = temp.find(' ');
-  temp = temp.erase(0,index+1);
-  for(int i = 0; i < temp.size();i++){
-    if(temp[i] != ' '){
-      final += temp[i];
-    }
+  int Openindex;
+  int start;
+  string final = "";
+  Openindex = str.find('(');
+  start = Openindex-1;
+  while (isalnum(str[start])){ //finds start of function name
+    start--;
   }
+  start++;
 
+  while(start < Openindex){
+    final = final + str[start];
+    start++;
+  }
   return final;
 };
+bool MultipleMethods(string str){
+  int position = str.find('(');
+
+  if(str.find('(', position+1) != -1){
+    return true;
+  }
+  else{
+    return false;
+  }
+
+};
+
+void MethodTotal(string str, vector<string> & List){
+  string name;
+  int start;
+  int position = str.find('(');
+
+  while(position != -1){
+      name = "";
+
+      start = position - 1;
+      while (isalnum(str[start])){ //finds start of function name
+        start--;
+      }
+      start++;
+
+      while(start < position){
+        name = name + str[start];
+        start++;
+      }
+
+      List.push_back(name);
+      position = str.find('(', position + 1);
+  }
+}
 
 
 File* New_File(string File_Name){

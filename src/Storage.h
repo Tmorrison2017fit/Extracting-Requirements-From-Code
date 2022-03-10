@@ -84,5 +84,8 @@ class File{
 
 string StripString(string str);
 
+bool MultipleMethods(string str);
+void MethodTotal(string str, vector<string> & List);
+
 File* New_File(string File_Name);
 #endif
