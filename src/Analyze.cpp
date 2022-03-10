@@ -9,12 +9,15 @@
 #include "Parse.h"
 #include "Analyze.h"
 
-#include "freeling.h"
+//#include "freeling.h"
 
+#if WIN32
+  #define SLASH "\\"
+#else
+  #define SLASH "/"
+#endif
 
-
-
-/* 
+/*
 So all the input should be in ASCII anyways, and we really aren't expecting any special
 Unicode Characters, so really we should be able to convert between strings and wstrings
 without needing to worry about any UTF-16 inputs
@@ -82,7 +85,7 @@ freeling::maco_options my_maco_options(const wstring &lang, const wstring &lpath
   opt.ProbabilityFile = lpath + L"probabilitats.dat";
   opt.DictionaryFile = lpath + L"dicc.src";
   opt.NPdataFile = lpath + L"np.dat";
-  opt.PunctuationFile = lpath + L"../common/punct.dat";
+  opt.PunctuationFile = lpath + L".."+SLASH+"common"+SLASH+"punct.dat";
 
   return opt;
 }
@@ -97,12 +100,12 @@ void Analyze_Text(File *Cur_File){
 
     //Set the default language to English text
     wstring lang = L"en";
- 
+
     //Set the default path where FreeLing is located, this is definitely gonna be system dependent
     wstring ipath = L"/usr/local/";
 
     //Path to language data
-    wstring lpath = ipath + L"/share/freeling/" + lang + L"/";
+    wstring lpath = ipath + SLASH + L"share"+SLASH+"freeling" +SLASH + lang + SLASH;
 
 
     //Create tokenizer and splitter objects
@@ -152,7 +155,7 @@ void Analyze_Text(File *Cur_File){
 
 
 
-    //Send it the preliminary cleaned lines, make an attribue to store that 
+    //Send it the preliminary cleaned lines, make an attribue to store that
     //Tokenize input data and split into list of words
     list<freeling::word> wordList= tk.tokenize(CleanedInput);
 
@@ -177,7 +180,7 @@ void PrintSentences(const list<freeling::sentence> &ls){
   //For each sentence in the list
   for(list<freeling::sentence>::const_iterator is = ls.begin(); is != ls.end(); ++is){
 
-    //For each word in a sentence   
+    //For each word in a sentence
     for(freeling::sentence::const_iterator w = is->begin(); w != is->end(); ++w){
 
 
@@ -190,7 +193,7 @@ void PrintSentences(const list<freeling::sentence> &ls){
       for(freeling::word::const_iterator a = w->analysis_begin(); a != w->analysis_end(); ++a){
 
         wcout << L" (" << a->get_lemma() << L"," << a->get_tag() << L")";
-      } 
+      }
 
       wcout << L" }" << endl;
 

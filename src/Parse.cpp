@@ -132,7 +132,7 @@ string ReplaceBadChars(string badString){
 
 
 //Grab all of the keywords from the methods in a file
-void Parse_File_Methods(File *Cur_File){
+void Parse_File_Methods(File* Cur_File){
     int lineIterator;
     int methodIterator;
     string line;

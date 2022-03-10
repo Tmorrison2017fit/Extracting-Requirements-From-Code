@@ -1,14 +1,15 @@
 #include <iostream>
 #include <string>
 
-#include "Storage.cpp"
-#include "Parse.cpp"
 #include "Storage.h"
+#include "Storage.cpp"
+
 #include "Parse.h"
+#include "Parse.cpp"
 
+//#include "Analyze.h"
+//#include "Analyze.cpp"
 
-#include "Analyze.h"
-#include "Analyze.cpp"
 
 
 using namespace std;
@@ -31,7 +32,8 @@ int main(int argc,char* argv[]){
 
 
   cout << "Analyzing Text: " << endl << endl;
-  Analyze_Text(TestFile);
+  //Analyze_Text(TestFile);
+
 
 // try
 //               {

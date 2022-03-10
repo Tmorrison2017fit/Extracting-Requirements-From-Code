@@ -2,7 +2,8 @@
 #define ANALYZE_H
 
 
-#include "freeling.h"
+//#include "freeling.h"
+
 
 //ALL THIS FREELING STUFF NEEDS TO USE WSTRINGS, SO FIRST CONVERT STRINGS TO WSTRINGS
 //ALSO, FL NEEDS LISTS, SO CONVERT VECTORS TO LISTS, THEN LISTS BACK TO VECTORS WHEN DONE
@@ -23,7 +24,7 @@ std::list<string> Vector2List(std::vector<string> &inputVector);
 freeling::maco_options set_Maco_Options(const wstring &lang, const wstring &lpath);
 
 
-void Analyze_Text(File *Cur_File);
+void Analyze_Text(File* Cur_File);
 
 void PrintSentences(const list<freeling::sentence> &wordList);
 
