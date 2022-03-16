@@ -9,13 +9,8 @@
 #include "Parse.h"
 #include "Analyze.h"
 
-//#include "freeling.h"
+#include "freeling.h"
 
-#if WIN32
-  #define SLASH "\\"
-#else
-  #define SLASH "/"
-#endif
 
 /*
 So all the input should be in ASCII anyways, and we really aren't expecting any special
@@ -85,7 +80,7 @@ freeling::maco_options my_maco_options(const wstring &lang, const wstring &lpath
   opt.ProbabilityFile = lpath + L"probabilitats.dat";
   opt.DictionaryFile = lpath + L"dicc.src";
   opt.NPdataFile = lpath + L"np.dat";
-  opt.PunctuationFile = lpath + L".."+SLASH+"common"+SLASH+"punct.dat";
+  opt.PunctuationFile = lpath + L"../common/punct.dat";
 
   return opt;
 }
@@ -102,10 +97,10 @@ void Analyze_Text(File *Cur_File){
     wstring lang = L"en";
 
     //Set the default path where FreeLing is located, this is definitely gonna be system dependent
-    wstring ipath = L"/usr/local/";
+    wstring ipath = L"/usr";
 
     //Path to language data
-    wstring lpath = ipath + SLASH + L"share"+SLASH+"freeling" +SLASH + lang + SLASH;
+    wstring lpath = ipath + L"/share/freeling/"+ lang + L"/";
 
 
     //Create tokenizer and splitter objects

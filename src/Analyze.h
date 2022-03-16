@@ -2,7 +2,7 @@
 #define ANALYZE_H
 
 
-//#include "freeling.h"
+#include "freeling.h"
 
 
 //ALL THIS FREELING STUFF NEEDS TO USE WSTRINGS, SO FIRST CONVERT STRINGS TO WSTRINGS

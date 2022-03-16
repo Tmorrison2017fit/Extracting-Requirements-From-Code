@@ -110,7 +110,7 @@ void Read_File(string file, File* Cur_File, LinkedList* Tree){
 }
 
 
-/*
+
 //Determine if a character is a bad character
 //Bad characters are anything besides a-zA-z, 0-9, ", '
 bool bad_chars(char c){
@@ -124,11 +124,6 @@ string ReplaceBadChars(string badString){
   replace_if(badString.begin(), badString.end(), bad_chars, ' ');
   return badString;
 }
-
-
-//TODO: Merge all of the text analyzer stuff into a new seperate file
-// Parsing file methods will come down to taking out the bad characters and putting the input in a list
-// to send to the TA
 
 
 //Grab all of the keywords from the methods in a file
@@ -149,14 +144,14 @@ void Parse_File_Methods(File* Cur_File){
         }
 
 
-        cout << "BAD LINE: " << line << endl;
+        //cout << "BAD LINE: " << line << endl;
 
         //Cut out all the bad characters in the input line
         line = ReplaceBadChars(line);
 
         //Output the cleaned line to stdout
-        cout << "CLEANED LINE: " << line <<endl;
-        cout << endl << endl;
+        //cout << "CLEANED LINE: " << line <<endl;
+        //cout << endl << endl;
 
         //If we got rid of all the characters in a line, it will be empty and shouldn't be added
         if(line.length() == 0){
@@ -169,4 +164,4 @@ void Parse_File_Methods(File* Cur_File){
       }
     }
 }
-*/
+

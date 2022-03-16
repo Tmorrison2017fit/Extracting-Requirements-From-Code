@@ -23,7 +23,7 @@ int main(int argc,char* argv[]){
   TestFile->AddFileName(argv[1]);
   cout << "Reading File: " << argv[1]<< endl << endl;
   Read_File(argv[1], TestFile, LogicTree);
-  //Parse_File_Methods(TestFile);
+  Parse_File_Methods(TestFile);
   cout << "Printing Parsed Contents: " << endl << endl;
   printFunction(TestFile);
 
