@@ -93,7 +93,16 @@ echo "g++ main.cpp -o ReqExCLI.exe -lfreeling -std=c++0x"
 ## WORK ON THIS ONCE MAIN GETS CONVERTED
 
 ##### Grab U++ Toolkit to use umk and build GUI #####
-echo "wget https://sourceforge.net/projects/upp/files/upp/2021.1/upp-macos-15947.tar.xz/download"
+echo "wget -O upp-posix-15947.tar.xz https://sourceforge.net/projects/upp/files/upp/2021.1/upp-posix-15947.tar.xz/download"
 
-##### Build GUI using umk
-echo "umk ... "
+echo "tar -xf upp-posix-15947.tar.xz"
+
+echo "cd upp"
+
+echo "./install"
+
+echo "y"
+
+echo "y"
+
+#### This installs the full IDE, I wonder if we can just get a tool to build our specific GUI
