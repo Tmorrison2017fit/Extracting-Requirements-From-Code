@@ -108,6 +108,35 @@ void LinkedList::PrintList(){
     }
   }
 };
+vector<string> LinkedList::RetrieveList(){
+  queue<Node*> SearchQueue;
+  Node* Temp;
+  string PrevParent;
+  vector<string> Output;
+  SearchQueue.push(Root);
+  while(!SearchQueue.empty()){
+    Temp = SearchQueue.front();
+
+    SearchQueue.pop();
+    if(Temp->Name == "main"){
+      Output.push_back("Root: main\n");
+    }
+    else if(Temp->Parent != NULL && (PrevParent == Temp->Parent->Name)){
+      Output.push_back("   [-]Child: " + Temp->Name + "\n");
+    }
+    else if(Temp->Parent != NULL && (PrevParent != Temp->Parent->Name)){
+      Output.push_back("[+]Parent: "+ Temp->Parent->Name + "\n   [-]Child: "+Temp->Name + "\n");
+      PrevParent = Temp->Parent->Name;
+    }
+
+    if(!Temp->Children.empty()){
+      for(int i = 0; i< Temp->Children.size(); i++){
+        SearchQueue.push(Temp->Children[i]);
+      }
+    }
+  }
+  return Output;
+};
 //-------------------------Method Class---------------------------
 File::Method::Method(string MName){
   MethodName = MName;

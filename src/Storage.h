@@ -23,7 +23,7 @@ class LinkedList{
     bool InLinkedList( string NodeName); // Checks to see if something is in the list.
     Node* SearchParent(string ParentName); // Searches for the specified parent.
     void PrintList(); // Prints the List.
-
+    vector<string> RetrieveList();
 };
 
 class File{

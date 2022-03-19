@@ -19,7 +19,7 @@ void printFunction(File *FileObj);
 int main(int argc,char* argv[]){
 
   LinkedList* LogicTree = new LinkedList(); // Creates the Linked List Object.
-  File* TestFile = New_File(argv[0]);
+  File* TestFile = New_File(argv[1]);
   TestFile->AddFileName(argv[1]);
   cout << "Reading File: " << argv[1]<< endl << endl;
   Read_File(argv[1], TestFile, LogicTree);
