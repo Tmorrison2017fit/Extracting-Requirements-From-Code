@@ -1,0 +1,209 @@
+word 'This'
+Possible analysis: { (this,DT) (this,RB) }
+  Selected analysis: (this, DT)
+word 'is'
+Possible analysis: { (be,VBZ) }
+  Selected analysis: (be, VBZ)
+word 'my'
+Possible analysis: { (my,PRP$) }
+  Selected analysis: (my, PRP$)
+word 'example'
+Possible analysis: { (example,NN) }
+  Selected analysis: (example, NN)
+word 'test'
+Possible analysis: { (test,NN) (test,VB) (test,VBP) }
+  Selected analysis: (test, NN)
+word 'file'
+Possible analysis: { (file,VB) (file,NN) (file,VBP) }
+  Selected analysis: (file, NN)
+word '.'
+Possible analysis: { (.,Fp) }
+  Selected analysis: (., Fp)
+
+word 'I'
+Possible analysis: { (i,PRP) }
+  Selected analysis: (i, PRP)
+word 'am'
+Possible analysis: { (be,VBP) }
+  Selected analysis: (be, VBP)
+word 'checking'
+Possible analysis: { (check,VBG) }
+  Selected analysis: (check, VBG)
+word 'to'
+Possible analysis: { (to,TO) (to,IN) }
+  Selected analysis: (to, TO)
+word 'see'
+Possible analysis: { (see,VB) (see,VBP) }
+  Selected analysis: (see, VB)
+word 'how'
+Possible analysis: { (how,WRB) (how,NN) }
+  Selected analysis: (how, WRB)
+word 'my'
+Possible analysis: { (my,PRP$) }
+  Selected analysis: (my, PRP$)
+word 'words'
+Possible analysis: { (word,NNS) (word,VBZ) }
+  Selected analysis: (word, NNS)
+word 'are'
+Possible analysis: { (be,VBP) }
+  Selected analysis: (be, VBP)
+word 'broken'
+Possible analysis: { (break,VBN) }
+  Selected analysis: (break, VBN)
+word 'down'
+Possible analysis: { (down,IN) (down,RP) (down,RB) (down,JJ) (down,NN) (down,VB) (down,VBP) }
+  Selected analysis: (down, RP)
+word 'in'
+Possible analysis: { (in,IN) (in,RP) (in,RB) }
+  Selected analysis: (in, IN)
+word 'this'
+Possible analysis: { (this,DT) (this,RB) }
+  Selected analysis: (this, DT)
+word 'file'
+Possible analysis: { (file,VB) (file,NN) (file,VBP) }
+  Selected analysis: (file, NN)
+word '.'
+Possible analysis: { (.,Fp) }
+  Selected analysis: (., Fp)
+
+word 'I'
+Possible analysis: { (i,PRP) }
+  Selected analysis: (i, PRP)
+word 'wonder'
+Possible analysis: { (wonder,VBP) (wonder,VB) }
+  Selected analysis: (wonder, VBP)
+word 'what'
+Possible analysis: { (what,WP) (what,WDT) }
+  Selected analysis: (what, WP)
+word 'the'
+Possible analysis: { (the,DT) }
+  Selected analysis: (the, DT)
+word 'program'
+Possible analysis: { (program,NN) (program,VB) (program,VBP) }
+  Selected analysis: (program, NN)
+word 'is'
+Possible analysis: { (be,VBZ) }
+  Selected analysis: (be, VBZ)
+word 'going'
+Possible analysis: { (go,VBG) }
+  Selected analysis: (go, VBG)
+word 'to'
+Possible analysis: { (to,TO) (to,IN) }
+  Selected analysis: (to, TO)
+word 'do'
+Possible analysis: { (do,VBP) (do,VB) }
+  Selected analysis: (do, VB)
+word 'if'
+Possible analysis: { (if,IN) }
+  Selected analysis: (if, IN)
+word 'the'
+Possible analysis: { (the,DT) }
+  Selected analysis: (the, DT)
+word 'text'
+Possible analysis: { (text,NN) }
+  Selected analysis: (text, NN)
+word 'file'
+Possible analysis: { (file,VB) (file,NN) (file,VBP) }
+  Selected analysis: (file, NN)
+word 'is'
+Possible analysis: { (be,VBZ) }
+  Selected analysis: (be, VBZ)
+word 'broken'
+Possible analysis: { (break,VBN) }
+  Selected analysis: (break, VBN)
+word 'by'
+Possible analysis: { (by,IN) (by,RP) (by,RB) }
+  Selected analysis: (by, IN)
+word 'newline'
+Possible analysis: { (newline,NN) (newline,VB) (newline,VBP) (newline,JJ) }
+  Selected analysis: (newline, NN)
+word 'characters'
+Possible analysis: { (character,NNS) }
+  Selected analysis: (character, NNS)
+word 'like'
+Possible analysis: { (like,IN) (like,VB) (like,VBP) (like,JJ) }
+  Selected analysis: (like, IN)
+word 'this'
+Possible analysis: { (this,DT) (this,RB) }
+  Selected analysis: (this, DT)
+word '.'
+Possible analysis: { (.,Fp) }
+  Selected analysis: (., Fp)
+
+word 'I'
+Possible analysis: { (i,PRP) }
+  Selected analysis: (i, PRP)
+word 'know'
+Possible analysis: { (know,VB) (know,VBP) }
+  Selected analysis: (know, VBP)
+word 'that'
+Possible analysis: { (that,IN) (that,WDT) (that,DT) (that,RB) (that,WP) }
+  Selected analysis: (that, IN)
+word 'it'
+Possible analysis: { (it,PRP) }
+  Selected analysis: (it, PRP)
+word 'can'
+Possible analysis: { (can,MD) (can,NN) (can,VB) (can,VBP) }
+  Selected analysis: (can, MD)
+word 'parse'
+Possible analysis: { (parse,VB) (parse,VBP) }
+  Selected analysis: (parse, VB)
+word 'on'
+Possible analysis: { (on,IN) (on,RP) (on,RB) }
+  Selected analysis: (on, IN)
+word 'sentences'
+Possible analysis: { (sentence,NNS) (sentence,VBZ) }
+  Selected analysis: (sentence, NNS)
+word ','
+Possible analysis: { (,,Fc) }
+  Selected analysis: (,, Fc)
+word 'but'
+Possible analysis: { (but,CC) (but,IN) (but,RB) }
+  Selected analysis: (but, CC)
+word 'what'
+Possible analysis: { (what,WP) (what,WDT) }
+  Selected analysis: (what, WP)
+word 'about'
+Possible analysis: { (about,IN) (about,RB) (about,RP) }
+  Selected analysis: (about, RB)
+word 'when'
+Possible analysis: { (when,WRB) (when,IN) }
+  Selected analysis: (when, WRB)
+word 'the'
+Possible analysis: { (the,DT) }
+  Selected analysis: (the, DT)
+word 'sentences'
+Possible analysis: { (sentence,NNS) (sentence,VBZ) }
+  Selected analysis: (sentence, NNS)
+word 'are'
+Possible analysis: { (be,VBP) }
+  Selected analysis: (be, VBP)
+word 'split'
+Possible analysis: { (split,NN) (split,VBN) (split,VBD) (split,VB) (split,VBP) }
+  Selected analysis: (split, VBN)
+word 'by'
+Possible analysis: { (by,IN) (by,RP) (by,RB) }
+  Selected analysis: (by, IN)
+word 'periods'
+Possible analysis: { (period,NNS) }
+  Selected analysis: (period, NNS)
+word '.'
+Possible analysis: { (.,Fp) }
+  Selected analysis: (., Fp)
+
+word 'This'
+Possible analysis: { (this,DT) (this,RB) }
+  Selected analysis: (this, DT)
+word 'should'
+Possible analysis: { (should,MD) }
+  Selected analysis: (should, MD)
+word 'be'
+Possible analysis: { (be,VB) }
+  Selected analysis: (be, VB)
+word 'good'
+Possible analysis: { (good,JJ) (good,NN) (good,RB) }
+  Selected analysis: (good, JJ)
+word '.'
+Possible analysis: { (.,Fp) }
+  Selected analysis: (., Fp)
+

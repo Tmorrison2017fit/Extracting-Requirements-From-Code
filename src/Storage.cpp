@@ -1,10 +1,142 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <queue>
+#include <cctype>
 #include "Storage.h"
 
 using namespace std;
 
+// Node Class Constructor.
+Node::Node(){
+  Parent = NULL;
+};
+// LinkedList Class Constructor.
+LinkedList::LinkedList(){
+  Root = NULL;
+};
+// Creates and Updates the Linked List Root.
+void LinkedList::UpdateRoot(){
+  Node* RootNode = new Node();
+  RootNode->Name = "main";
+  Root = RootNode;
+
+};
+// Creates the new nodes and attaches them onto the linked list.
+void LinkedList::CreateNode(string NodeName, string ParentName){
+  Node* newNode= new Node();
+  Node* ParentPointer;
+  newNode->Parent=NULL;
+  newNode->Name = NodeName;
+  ParentPointer = SearchParent(ParentName); // Searches for the Nodes Parent in the Tree.
+  ParentPointer->Children.push_back(newNode);
+  newNode->Parent = ParentPointer;
+};
+// Checks to see if the string passed exists within the current Linked List.
+// Uses Breadth-First Search.
+bool LinkedList::InLinkedList(string NodeName){
+  queue<Node*> SearchQueue;
+  Node* Temp;
+  SearchQueue.push(Root);
+  while(!SearchQueue.empty()){
+    Temp = SearchQueue.front();
+    SearchQueue.pop();
+    if(Temp->Name == NodeName){
+      return true;
+    }
+    if(!Temp->Children.empty()){
+      for(int i = 0; i< Temp->Children.size(); i++){
+        if(Temp->Children[i] != NULL){
+          SearchQueue.push(Temp->Children[i]);
+        }
+      }
+    }
+  }
+  return false;
+};
+
+// Searches for the Parent Node pointer, return NULL if nothing found.
+// Uses Breadth-First Search.
+Node* LinkedList::SearchParent(string ParentName){
+
+  queue<Node*> SearchQueue;
+  Node* Temp;
+  SearchQueue.push(Root);
+  while(!SearchQueue.empty()){
+    Temp = SearchQueue.front();
+    SearchQueue.pop();
+    if(Temp->Name == ParentName){
+      return Temp;
+    }
+    if(!Temp->Children.empty()){
+      for(int i = 0; i< Temp->Children.size(); i++){
+        if(Temp->Children[i] != NULL){
+          SearchQueue.push(Temp->Children[i]);
+        }
+      }
+    }
+  }
+  return NULL;
+};
+
+// Prints out the Linked List.
+// Uses Breadth-First Search.
+void LinkedList::PrintList(){
+  queue<Node*> SearchQueue;
+  Node* Temp;
+  string PrevParent;
+  SearchQueue.push(Root);
+  while(!SearchQueue.empty()){
+    Temp = SearchQueue.front();
+
+    SearchQueue.pop();
+    if(Temp->Name == "main"){
+      cout << "Root: main" << endl;
+    }
+    else if(Temp->Parent != NULL && (PrevParent == Temp->Parent->Name)){
+      cout << "   [-]Child: "<<Temp->Name << endl;
+    }
+    else if(Temp->Parent != NULL && (PrevParent != Temp->Parent->Name)){
+      cout << "[+]Parent: "<< Temp->Parent->Name << "\n   [-]Child: "<<Temp->Name << endl;
+      PrevParent = Temp->Parent->Name;
+    }
+
+    if(!Temp->Children.empty()){
+      for(int i = 0; i< Temp->Children.size(); i++){
+        SearchQueue.push(Temp->Children[i]);
+      }
+    }
+  }
+};
+vector<string> LinkedList::RetrieveList(){
+  queue<Node*> SearchQueue;
+  Node* Temp;
+  string PrevParent;
+  vector<string> Output;
+  SearchQueue.push(Root);
+  while(!SearchQueue.empty()){
+    Temp = SearchQueue.front();
+
+    SearchQueue.pop();
+    if(Temp->Name == "main"){
+      Output.push_back("Root: main\n");
+    }
+    else if(Temp->Parent != NULL && (PrevParent == Temp->Parent->Name)){
+      Output.push_back("   [-]Child: " + Temp->Name + "\n");
+    }
+    else if(Temp->Parent != NULL && (PrevParent != Temp->Parent->Name)){
+      Output.push_back("[+]Parent: "+ Temp->Parent->Name + "\n   [-]Child: "+Temp->Name + "\n");
+      PrevParent = Temp->Parent->Name;
+    }
+
+    if(!Temp->Children.empty()){
+      for(int i = 0; i< Temp->Children.size(); i++){
+        SearchQueue.push(Temp->Children[i]);
+      }
+    }
+  }
+  return Output;
+};
 //-------------------------Method Class---------------------------
 File::Method::Method(string MName){
   MethodName = MName;
@@ -39,6 +171,21 @@ vector<int> File::Method::GetLoopRange(int index){
   Range[1] = Loops[index][1];
   return Range;
 };
+
+
+int File::Method::GetCleanedLength(){
+  return Cleaned_Lines.size();
+}
+
+string File::Method::GetCleanedLine(int index){
+  return Cleaned_Lines[index];
+};
+
+void File::Method::AddCleanedLine(string Line){
+  Cleaned_Lines.push_back(Line);
+};
+
+
 //------------------------------File Class--------------------------
 File::File(string Name_of_File){
   FileName = Name_of_File;
@@ -60,6 +207,10 @@ void File::AddLibrary(string NewLib){
 
 void File::AddPreprocessors(string preProc){
   Preprocessors.push_back(preProc);
+};
+
+void File::AddComment(string CommentStr){
+  Comments.push_back(CommentStr);
 };
 
 string File::GetMethodDef(int index){
@@ -90,6 +241,15 @@ string File::GetPreprocessors(int index){
   }
 };
 
+string File::GetComment(int index){
+  if(index < Comments.size() && index >= 0){
+    return Comments[index];
+  }
+  else{
+    return "Error: Index out of bounds";
+  }
+};
+
 
 int File::GetMethodDefLen(){
   return MethodDefs.size();
@@ -102,7 +262,65 @@ int File::GetLibraryLen(){
 int File::GetPreprocessorsLen(){
   return Preprocessors.size();
 };
+
+int File::GetCommentLen(){
+  return Comments.size();
+};
 //------------------------------------------------------------------
+string StripString(string str){
+  int Openindex;
+  int start;
+  string final = "";
+  Openindex = str.find('(');
+  start = Openindex-1;
+  while (isalnum(str[start])){ //finds start of function name
+    start--;
+  }
+  start++;
+
+  while(start < Openindex){
+    final = final + str[start];
+    start++;
+  }
+  return final;
+};
+bool MultipleMethods(string str){
+  int position = str.find('(');
+
+  if(str.find('(', position+1) != -1){
+    return true;
+  }
+  else{
+    return false;
+  }
+
+};
+
+void MethodTotal(string str, vector<string> & List){
+  string name;
+  int start;
+  int position = str.find('(');
+
+  while(position != -1){
+      name = "";
+
+      start = position - 1;
+      while (isalnum(str[start])){ //finds start of function name
+        start--;
+      }
+      start++;
+
+      while(start < position){
+        name = name + str[start];
+        start++;
+      }
+
+      List.push_back(name);
+      position = str.find('(', position + 1);
+  }
+}
+
+
 File* New_File(string File_Name){
   File *NFile = new File(File_Name);
   return NFile;

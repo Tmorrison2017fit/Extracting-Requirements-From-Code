@@ -1,0 +1,5 @@
+This is my example test file. I am checking to see how my words
+are broken down in this file. I wonder what the program is going
+to do if the text file is broken by newline characters like this.
+I know that it can parse on sentences, but what about when the sentences
+are split by periods. This should be good.
